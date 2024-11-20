@@ -1,13 +1,13 @@
 pipeline {
     environment {
-        IMAGEN = "josedom24/myapp"
+        IMAGEN = "machde/myapp"
         USUARIO = 'USER_DOCKERHUB'
     }
     agent any
     stages {
         stage('Clone') {
             steps {
-                git branch: "main", url: 'https://github.com/josedom24/jenkins_docker.git'
+                git branch: "main", url: 'https://github.com/machde-testing/jenkins_docker.git'
             }
         }
         stage('Build') {
@@ -23,6 +23,7 @@ pipeline {
                 script {
                     docker.image("$IMAGEN:$BUILD_NUMBER").inside('-u root') {
                            sh 'apache2ctl -v'
+                           echo 'Holiiii :)'
                         }
                     }
             }
